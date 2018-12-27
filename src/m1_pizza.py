@@ -30,9 +30,9 @@ def main():
     #        RE-commenting out the previous test to reduce the output.
     # -------------------------------------------------------------------------
 
-    #run_test_generate_points_on_circle()
-    run_test_draw_points_on_circle()
-    # run_test_pizza()
+    # run_test_generate_points_on_circle()
+    # run_test_draw_points_on_circle()
+    run_test_pizza()
     # run_test_polygon()
     # run_test_fancy_polygon()
 
@@ -40,7 +40,7 @@ def main():
 def run_test_generate_points_on_circle():
     """ Tests the   generate_points_on_circle   function. """
     # -------------------------------------------------------------------------
-    # TODO: 2. Implement this TEST function.
+    # DONE: 2. Implement this TEST function.
     #   It TESTS the  generate_points_on_circle  function defined below.
     #   Include at least ** 1 ** ADDITIONAL test (that YOU write).
     #
@@ -72,14 +72,16 @@ def run_test_generate_points_on_circle():
     # -------------------------------------------------------------------------
 
     # Test 2:
-    expected = [rg.Point(125.0, 50.0),  # All numbers are approximate.
-                rg.Point(112.5, 71.7),
-                rg.Point(87.5, 71.7),
-                rg.Point(75.0, 50.0),
-                rg.Point(87.5, 28.3),
-                rg.Point(112.5, 28.3)]
-    circle = rg.Circle(rg.Point(100, 50), 25)
-    answer = generate_points_on_circle(circle, 6)
+    expected = [rg.Point(150.0, 50.0),  # All numbers are approximate.
+                rg.Point(135.4, 85.4),
+                rg.Point(100, 100),
+                rg.Point(64.6, 85.4),
+                rg.Point(50.0, 50.0),
+                rg.Point(64.6, 14.6),
+                rg.Point(100, 0),
+                rg.Point(135.4, 14.6)]
+    circle = rg.Circle(rg.Point(100, 50), 50)
+    answer = generate_points_on_circle(circle, 8)
 
     print('Expected:', expected)
     print('Actual:  ', answer)
@@ -350,6 +352,17 @@ def pizza(window, circle, number_of_slices, color, thickness):
     #    and then draw lines that are based in part on those points.
     # -------------------------------------------------------------------------
 
+    points = generate_points_on_circle(circle, number_of_slices)
+
+    ore = rg.Circle(circle.center, circle.radius)
+    ore.fill_color = circle.fill_color
+    ore.attach_to(window)
+    window.render()
+
+    for k in range(number_of_slices):
+        crayon = rg.Line(points, circle.center)
+        crayon.attach_to(window)
+        window.render()
 
 def run_test_polygon():
     """ Tests the   polygon   function. """
