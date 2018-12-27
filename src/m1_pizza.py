@@ -312,6 +312,14 @@ def run_test_pizza():
     #     -- on a yellow-filled circle.
     # -------------------------------------------------------------------------
 
+    # Test 4:
+    title = 'PIZZA test 4:  200 slices, thin black slices.'
+    window = rg.RoseWindow(400, 400, title)
+    circle = rg.Circle(rg.Point(200, 200), 150)
+    circle.fill_color = 'yellow'
+    circle.outline_thickness = 3
+    pizza(window, circle, 200, 'black', 1)
+    window.close_on_mouse_click()
 
 def pizza(window, circle, number_of_slices, color, thickness):
     """
@@ -360,7 +368,10 @@ def pizza(window, circle, number_of_slices, color, thickness):
     window.render()
 
     for k in range(number_of_slices):
-        crayon = rg.Line(points, circle.center)
+        crayon = rg.Line(points[k], circle.center)
+
+        crayon.color = color
+        crayon.thickness = thickness
         crayon.attach_to(window)
         window.render()
 
